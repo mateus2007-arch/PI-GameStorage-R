@@ -35,6 +35,14 @@ public class ProdutoService {
         }
         return p;
     }
+    
+    public double calcularValorTotalEstoque(){
+        double total = 0;
+        for(Produto p : repositorio.listar()){
+            total = total + p.getValorEmEstoque();
+        }
+        return total;
+    }
 
     public void cadastrar(Produto produto) {
         validador.validar(produto);

@@ -9,6 +9,8 @@ package model;
  * @author mateu
  */
 
+import exception.ValidacaoException;
+
 public class Produto {
 
     private int id;
@@ -26,6 +28,17 @@ public class Produto {
             this.preco = preco;
             this.estoque = estoque;
         }
+    
+    public double getValorEmEstoque(){
+        return preco * estoque;
+    }
+    
+    public double preComDesconto(double percentual){
+        if(percentual <0 || percentual > 100){
+            throw new ValidacaoException("O desconto deve ficar entre 0 a 100");
+        }
+        return preco - (preco * percentual / 100);
+    }
 
     public int getId() {
         return id;
